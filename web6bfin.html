@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>History of Computers - GST Calculator</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('web6pic.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    background: rgba(10, 25, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 30px 40px;
+    max-width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    text-align: center;
+  }
+
+  h1 {
+    color: #f9b233;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1.5px;
+  }
+
+  label {
+    display: block;
+    margin: 15px 0 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #ddd;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: #f9b233;
+    color: #10203f;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #d19600;
+    transform: scale(1.05);
+  }
+
+  #result {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #00e5c4;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🖥️ History of Computers <br> <span style="color:#00e5c4;">GST Calculator</span></h1>
+  
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" placeholder="Enter amount" min="0" />
+  
+  <label for="gst">GST (%):</label>
+  <select id="gst">
+    <option value="3">3%</option>
+    <option value="5">5%</option>
+    <option value="12">12%</option>
+    <option value="18">18%</option>
+    <option value="28">28%</option>
+  </select>
+  
+  <button onclick="calculateGST()">Calculate</button>
+  <button style="margin-top:10px; background-color:#444;" onclick="resetForm()">Reset</button>
+  
+  <div id="result"></div>
+</div>
+
+<script>
+  function calculateGST() {
+    const amount = parseFloat(document.getElementById('amount').value) || 0;
+    const gstRate = parseFloat(document.getElementById('gst').value);
+    
+    if(amount <= 0) {
+      alert('Please enter a valid amount!');
+      return;
+    }
+    
+    const gstAmount = (amount * gstRate) / 100;
+    const totalAmount = amount + gstAmount;
+    
+    document.getElementById('result').innerHTML = `
+      Actual Amount: ₹${amount.toFixed(2)} <br>
+      GST (${gstRate}%): ₹${gstAmount.toFixed(2)} <br>
+      <strong>Total: ₹${totalAmount.toFixed(2)}</strong>
+    `;
+  }
+  
+  function resetForm() {
+    document.getElementById('amount').value = '';
+    document.getElementById('gst').value = '3';
+    document.getElementById('result').innerHTML = '';
+  }
+</script>
+
+</body>
+</html>
